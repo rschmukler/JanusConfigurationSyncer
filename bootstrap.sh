@@ -11,5 +11,5 @@ if [ ! -d "~/.janus" ]; then
 fi
 
 cd "~/.janus";
-wget "http://bit.ly/LI1GWg";
+curl -Lo- "http://bit.ly/confsync-rakefile" > Rakefile;
 rake install_create || die;
