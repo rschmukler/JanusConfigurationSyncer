@@ -29,6 +29,19 @@ task :move_existing_vim_files do
   end
 end
 
+desc "Unlinks the config files and moves them back"
+task :uninstall do
+  %w[ vimrc.before vimrc.after gvimrc.before gvimrc.after ].each do |file|
+    dst = File.expand_path("~/.#{file}")
+    src = File.expand_path("#{ROOT_PATH}/config/#{file}")
+    if File.exist?(dst)
+      FileUtils.rm(dst)
+    end
+    FileUtils.cp(src, dst)
+  end
+
+end
+
 desc "Create necessary folders"
 task :folders do
   folders = %w[ config ]

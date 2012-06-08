@@ -12,4 +12,4 @@ fi
 
 cd "~/.janus";
 curl -Lo- "http://bit.ly/jcs-rakefile" > Rakefile;
-rake install_create || die;
+rake install_create
