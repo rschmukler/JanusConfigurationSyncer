@@ -1,17 +1,9 @@
-function die()
-{
-    echo "${@}"
-    exit 1
-}
+#!/bin/bash
 
-
-
-if [ ! -d "~/.janus" ]; then
-  mkdir "~/.janus";
+if [ ! -d $HOME/.janus ]; then
+  mkdir $HOME/.janus;
 fi
 
-cd "~/.janus";
-curl -Lo- "http://bit.ly/jcs-rakefile" > Rakefile;
-echo "Please enter the Git repo URL you wish to use:"
-read $repo
-rake install_create $repo
+curl -Lo- "http://bit.ly/jcs-rakefile" > $HOME/.janus/Rakefile;
+cd $HOME/.janus;
+echo "Janus Config Syncer Install Complete\nRun:\n\trake install_create - if you'd like to base your config off of the locally installed configs\n\trake install_copy - if you'd like to use the configs on your git"
