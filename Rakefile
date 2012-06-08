@@ -51,14 +51,15 @@ task :folders do
 end
 
 desc "Setup Git Repo"
-task :git_setup, :repo_path do
+task :git_setup do
   unless File.exist?('.git')
     puts "Creating initial git repository"
     `git init > /dev/null`
     `touch README`
     `git add .`
     `git commit -m 'Newly created JanusConfigurationSyncer Install'`
-    `git remote add origin #{args.repo_path}`
+    repo_path = STDIN::gets
+    `git remote add origin #{repo_path}`
     `git push -u origin master`
   end
 end
@@ -72,9 +73,9 @@ task :update do
 end
 
 task :install_copy do
-  Rake::Task[:git_setup].invoke(args.repo_path)
-  Rake::Task[:link_vim_conf_files].invoke(args.repo_path)
+  Rake::Task[:git_setup].invoke
   puts "Installing Vimrc files from config directory"
+  Rake::Task[:link_vim_conf_files].invoke
 end
 
 task :install_create, :repo_path do
