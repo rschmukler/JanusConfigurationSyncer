@@ -20,7 +20,7 @@ task :move_existing_vim_files do
     src = File.expand_path("~/.#{file}")
     dst = File.expand_path("#{ROOT_PATH}/config/#{file}")
     if File.exist?(src)
-      puts "\tCopying Existing File: .#{file} and moving it to #{ROOT_PATH}/config/#{file}"
+      puts "\tMoving Existing File: .#{file} to #{ROOT_PATH}/config/#{file}"
       FileUtils.mv(src, dst)
     else
       puts "Creating empty config file: #{ROOT_PATH}/config/#{file}"
@@ -83,7 +83,7 @@ task :install_create, :repo_path do
   Rake::Task[:move_existing_vim_files].invoke
   puts "Creating necessary folders"
   Rake::Task[:folders].invoke
-  Rake::Task[:install_copy]
+  Rake::Task[:install_copy].invoke
 end
 
 desc "Update Janus Config"
