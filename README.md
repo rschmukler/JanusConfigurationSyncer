@@ -5,9 +5,10 @@ sync between installations.
 
 ## Installation
 
-To install the Rakefile to the system run the following: `curl -Lo- "http://bit.ly/jcs-bootstrap" | bash`
 
 ### First System Installation
+
+To install the Rakefile to the system run the following: `curl -Lo- "http://bit.ly/jcs-bootstrap" | bash`
 
 Once you've installed the Rakefile you need to copy the config files and
 set up a git repository. You can do that by running the following:
@@ -24,7 +25,7 @@ plugins as submodules so that you can stay up to date.
 Once you have already configured a git repository you can create an
 installation and autolink your vimrc files by running the following
 
-    cd ~/.janus/
+    git clone <repo> ~/.janus
     rake install_copy
 
 
