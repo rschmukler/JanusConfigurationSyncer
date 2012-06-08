@@ -69,10 +69,15 @@ end
 task :update do
   puts "Pulling the latest configuration"
   `git pull > /dev/null`
-  puts "Updating Submodules"
-  sh "git submodule foreach git pull origin master"
+
+  puts "Synchronising submodules urls"
+  `git submodule sync > /dev/null`
+
+  puts "Updating the submodules"
+  `git submodule update --init > /dev/null`
+
   puts "Updating Rackfile"
-  sh 'curl -Lo- "http://bit.ly/jcs-rakefile" > ~/.janus/Rakefile'
+  sh 'curl -Lo- "http://bit.ly/jcs-rakefile" > ~/.janus/Rakefile > /dev/null'
 end
 
 task :install_copy do
