@@ -26,6 +26,7 @@ Once you have already configured a git repository you can create an
 installation and autolink your vimrc files by running the following
 
     git clone <repo> ~/.janus
+    cd ~/.janus
     rake install_copy
 
 
