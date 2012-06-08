@@ -58,6 +58,7 @@ task :git_setup do
     `touch README`
     `git add .`
     `git commit -m 'Newly created JanusConfigurationSyncer Install'`
+    print "Please enter Git Repo URL: "
     repo_path = STDIN::gets
     `git remote add origin #{repo_path}`
     `git push -u origin master`
