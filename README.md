@@ -1,15 +1,41 @@
 # Janus Configuration
 
-A base rackfile and directory structure to keep [Janus distrobution's](https://github.com/carlhuda/janus) in
-sync between installations. Also includes all the plugins that I use in
-my VIM (in addition to what Janus provides) 
+A base Rakefile and directory structure to keep [Janus distrobution's](https://github.com/carlhuda/janus) config files in
+sync between installations. 
 
 ## Installation
 
-To get the initial set of vimrc files linked simply run `rake install`.
-The rakefile will move existing vimrc files to <file>.old
+To install the Rakefile to the system run the following: `curl -Lo- "http://bit.ly/jcs-bootstrap" | bash`
 
-## Updating
+### First System Installation
 
-Updating is as simple as running `rake update` this will take care
+Once you've installed the Rakefile you need to copy the config files and
+set up a git repository. You can do that by running the following:
 
+    cd ~/.janus/
+    rake install_create
+
+You will need to specify a Git repository URL which will be used to
+sychronize your config files and plugins. I also recommend installing
+plugins as submodules so that you can stay up to date.
+
+### Additional System Installations
+
+Once you have already configured a git repository you can create an
+installation and autolink your vimrc files by running the following
+
+    cd ~/.janus/
+    rake install_copy
+
+
+## Updating (Resychronizing)
+
+After you have run either `rake install_copy` or `rake install_create`,
+you can run `rake update` to pull the latest config files from your
+repository as well as update any plugins.
+
+## Pushing changes
+
+Standard git for pushing changes, simply run `git add .; git commit -m "comment"; git push`,
+You can then run `rake update` from another system and have it update
+everything for you.
