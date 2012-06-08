@@ -72,7 +72,7 @@ task :update do
   puts "Updating Submodules"
   sh "git submodule foreach git pull origin master"
   puts "Updating Rackfile"
-  sh 'curl -Lo- "http://bit.ly/jcs-bootstrap" > ~/.janus/Rackfile'
+  sh 'curl -Lo- "http://bit.ly/jcs-bootstrap" > ~/.janus/Rakefile'
 end
 
 task :install_copy do
