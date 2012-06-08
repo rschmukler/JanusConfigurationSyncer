@@ -51,15 +51,13 @@ task :folders do
 end
 
 desc "Setup Git Repo"
-task :git_setup do
+task :git_setup, :repo_path do
   puts "Creating initial git repository"
   `git init > /dev/null`
   `touch README`
   `git add .`
   `git commit -m 'Newly created JanusConfigurationSyncer Install'`
-  print "Please enter github repo URL: "
-  repo = STDIN.gets
-  `git remote add origin #{repo}`
+  `git remote add origin #{args.repo_path}`
   `git push -u origin master`
 end
 
@@ -75,8 +73,13 @@ task :install_copy => [:link_vim_conf_files] do
   puts "Installing Vimrc files from config directory"
 end
 
-task :install_create => [:folders, :move_existing_vim_files, :git_setup, :install_copy] do
+task :install_create, :repo_path do
+  Rake::Task[:folders].invoke
+  Rake::Task[:move_existing_vim_files].invoke
   puts "Creating necessary folders"
+  Rake::Task[:folders].invoke
+  Rake::Task[:git_setup].invoke(args.repo_path)
+  Rake::Task[:install_copy]
 end
 
 desc "Update Janus Config"
